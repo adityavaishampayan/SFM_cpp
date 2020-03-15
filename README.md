@@ -18,7 +18,11 @@ There are a few steps that collectively form SfM:
   - Estimate Camera Pose from Essential Matrix
   - Check for Cheirality Condition using Triangulation
   - Perspective-n-Point
+     - Linear Camera Pose Estimation
+     - PnP RANSAC
+     - Nonlinear PnP
   - Bundle Adjustment
+     - Visibility Matrix
 
 ## Authors
  - Aditya Vaishampayan
