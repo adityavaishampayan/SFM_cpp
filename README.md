@@ -4,26 +4,59 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-# Boiler plate for C++ projects
+## Introduction
 
-This is a boiler plate for C++ projects. What you get:
+In this project we reconstruct a 3D scene and simultaneously obtain the camera poses of a monocular camera w.r.t. the given scene. This procedure is known as Structure from Motion (SfM). As the name suggests, you are creating the entire rigid structure from a set of images with different view points (or equivalently a camera in motion).
 
--   Sources, headers and mains separated in distinct folders
--   Use of modern [CMake](https://cmake.org/) for much easier compiling
--   Setup for tests using [doctest](https://github.com/onqtam/doctest)
--   Continuous testing with [Travis-CI](https://travis-ci.org/) and [Appveyor](https://www.appveyor.com), with support for C++17.
--   Code coverage reports, including automatic upload to [Coveralls.io](https://coveralls.io/) and/or [Codecov.io](https://codecov.io)
--   Code documentation with [Doxygen](http://www.stack.nl/~dimitri/doxygen/)
+A few years ago, Agarwal et. al published Building Rome in a Day in which they reconstructed the entire city just by using a large collection of photos from the Internet.
+
+There are a few steps that collectively form SfM:
+
+  - Feature Matching and Outlier rejection using RANSAC
+  - Estimating Fundamental Matrix
+  - Estimating Essential Matrix from Fundamental Matrix
+  - Estimate Camera Pose from Essential Matrix
+  - Check for Cheirality Condition using Triangulation
+  - Perspective-n-Point
+  - Bundle Adjustment
 
 ## Authors
  - Aditya Vaishampayan
  - Amrish Baskaran
+
+## License
+License file can be found [here](https://github.com/adityavaishampayan/SFM_cpp/blob/master/LICENSE)
+
+```
+MIT License
+
+Copyright (c) 2018 Aditya Vaishampayan, Amrish Bhaskaran
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## Development Process
 This module will be developed using the Solo Iterative Process(SIP), Test Driven Development and agile development in a 3 week sprint method.
 The spreadsheet for the Product log, iteration backlog, work log and sprint details can be found in this link-[Agile Development Spreadsheet](https://docs.google.com/spreadsheets/d/1gTq1l9RCe6zuMW0L57cpaaCt8EEMOVuNtgeplXd2HEI/edit?usp=sharing)
 
 Notes from the sprint review sessions can be found in the link-[Sprint review Doc](https://docs.google.com/document/d/1T2uCC2Ef_-l1TtSUzq2ocHxJed9Jsc1g0zjSTBZt-sQ/edit?usp=sharing)
+
 
 ## Structure
 ``` text
@@ -69,37 +102,10 @@ target_link_libraries(main PRIVATE ${LIBRARY_NAME})  # Link the executable to li
 You can find the example source code that builds the `main` executable in [app/main.cpp](app/main.cpp) under the `Build` section in [CMakeLists.txt](CMakeLists.txt).
 If the executable you made does not use the library in [src/](src), then only the first line is needed.
 
-## License
-License file can be found [here](https://github.com/adityavaishampayan/SFM_cpp/blob/master/LICENSE)
-
-```
-MIT License
-
-Copyright (c) 2018 Aditya Vaishampayan, Amrish Bhaskaran
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 ## Dependencies
 Simple starter C++ project with:
 
 - OpenCV - (OpenCV uses a BSD license and hence can be used for production with modification to the code.)
-- cmake
 - googletest [Gtest](http://wiki.ros.org/gtest)
 - Travis CI [Documentation](https://docs.travis-ci.com/user/for-beginners/)
 - Coveralls [Documentation](https://docs.coveralls.io/about-coveralls)
@@ -225,16 +231,17 @@ The result is a fresh Git repository with one commit adding all files from the b
 ## Doxygen Documentation
 
 The doxygen documentation can be generated manually using the following commands
-- Installation
+-
+
+Installation
 ```
 sudo apt-get install doxygen
 sudo apt-get install doxygen-gui
 ```
-- Open Doxywizard and follow the instructions to generate the required files
+Open Doxywizard and follow the instructions to generate the required files
 ```
 doxywizard
 ```
-
 Or one can also follow the steps given below:
 
 Doxygen Documentation generation steps:
@@ -258,17 +265,6 @@ doxygen <config_file_name>
 ```
 
 ## Plugins
-
-- CppChEclipse
-
-    To install and run cppcheck in Eclipse
-
-    1. In Eclipse, go to Window -> Preferences -> C/C++ -> cppcheclipse.
-    Set cppcheck binary path to "/usr/bin/cppcheck".
-
-    2. To run CPPCheck on a project, right click on the project name in the Project Explorer
-    and choose cppcheck -> Run cppcheck.
-
 
 - Google C++ Sytle
 
