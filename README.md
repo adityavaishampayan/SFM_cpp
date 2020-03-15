@@ -22,6 +22,7 @@ There are a few steps that collectively form SfM:
      - PnP RANSAC
      - Nonlinear PnP
   - Bundle Adjustment
+     - Visibility Matrix
 
 ## Authors
  - Aditya Vaishampayan
